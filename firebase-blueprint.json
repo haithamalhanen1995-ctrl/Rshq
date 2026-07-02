@@ -1,0 +1,115 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role, points, and password",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "password": { "type": "string" },
+        "points": { "type": "number" },
+        "role": { "type": "string" },
+        "referralCode": { "type": "string" },
+        "referredBy": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "email", "points", "role", "referralCode", "createdAt"]
+    },
+    "Service": {
+      "title": "Service",
+      "description": "Available SMM or Game Service",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "type": "string" },
+        "platform": { "type": "string" },
+        "nameAr": { "type": "string" },
+        "nameEn": { "type": "string" },
+        "descriptionAr": { "type": "string" },
+        "descriptionEn": { "type": "string" },
+        "pricePer1000": { "type": "number" },
+        "minOrder": { "type": "number" },
+        "maxOrder": { "type": "number" },
+        "fixedPrice": { "type": "number" },
+        "packageSize": { "type": "number" }
+      },
+      "required": ["id", "category", "platform", "nameAr", "nameEn"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "SMM or Game Order submitted by a user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "serviceId": { "type": "string" },
+        "serviceNameAr": { "type": "string" },
+        "serviceNameEn": { "type": "string" },
+        "platform": { "type": "string" },
+        "category": { "type": "string" },
+        "quantity": { "type": "number" },
+        "targetLinkOrId": { "type": "string" },
+        "extraDetails": { "type": "string" },
+        "totalCost": { "type": "number" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "userEmail", "serviceId", "serviceNameAr", "serviceNameEn", "platform", "category", "quantity", "targetLinkOrId", "totalCost", "status", "createdAt"]
+    },
+    "PaymentRequest": {
+      "title": "PaymentRequest",
+      "description": "Deposit/recharge request made by a user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "amountPoints": { "type": "number" },
+        "amountCash": { "type": "number" },
+        "method": { "type": "string" },
+        "transactionId": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "userEmail", "amountPoints", "amountCash", "method", "transactionId", "status", "createdAt"]
+    },
+    "Referral": {
+      "title": "Referral",
+      "description": "Tracks referrers and referred users",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "referrerId": { "type": "string" },
+        "referredId": { "type": "string" },
+        "referredEmail": { "type": "string" },
+        "pointsEarned": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "referrerId", "referredId", "referredEmail", "pointsEarned", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "User",
+      "description": "Collection of all system users"
+    },
+    "services": {
+      "schema": "Service",
+      "description": "Collection of SMM & game services"
+    },
+    "orders": {
+      "schema": "Order",
+      "description": "SMM/game orders"
+    },
+    "payments": {
+      "schema": "PaymentRequest",
+      "description": "Cash deposit recharge requests"
+    },
+    "referrals": {
+      "schema": "Referral",
+      "description": "Referral connections"
+    }
+  }
+}
